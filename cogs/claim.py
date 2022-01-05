@@ -110,7 +110,7 @@ class Eth(commands.Cog, name="eth"):
 
     @commands.command(name="update",
                       description=f"Update the ETH wallet associated with your account. Syntax: '!update <address>'")
-    async def update_address(self, context, address):
+    async def update_address(self, context, address: str):
         address = self.validate_address(address.rstrip())
         if address:
             if db.check_if_exists(context.author.id):
