@@ -124,7 +124,7 @@ class Eth(commands.Cog, name="eth"):
                                       description=f"**{context.author.mention} You have not set your ETH wallet."
                                                   f" If you wish to add your wallet,"
                                                   f" please use the `!set <address>` command.**")
-               embed.timestamp = datetime.datetime.now()
+                embed.timestamp = datetime.datetime.now()
                 await context.reply(embed=embed)
         else:
             embed = discord.Embed(color=0x000ff,
