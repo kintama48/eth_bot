@@ -145,7 +145,7 @@ class Eth(commands.Cog, name="eth"):
         if isinstance(error, commands.MissingRequiredArgument):
             return await ctx.send(embed=discord.Embed(
                 title="Error",
-                description=f"You forgot to provide an argument, please do it like: `{ctx.command.name} {ctx.command.usage}`"))
+                description=f"You forgot to provide an argument, please do it like: `{config['bot_prefix']}{ctx.command.name}{ctx.command.signature}`"))
 
 
 def setup(bot):
