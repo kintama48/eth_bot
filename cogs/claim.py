@@ -50,7 +50,7 @@ class Eth(commands.Cog, name="eth"):
         return Web3.isAddress(address)
 
     @commands.command(name="peek",
-                      description=f"Check the ETH wallet associated with an account. Syntax: '!check @user'")
+                      description=f"Check the ETH wallet associated with an account. Syntax: '!peek @user'")
     async def peek(self, context, member: discord.Member):
         # if has_roles(context):
         if db.check_if_exists(member.id):
@@ -67,7 +67,7 @@ class Eth(commands.Cog, name="eth"):
             await context.reply(embed=embed)
 
     @commands.command(name="verify",
-                      description=f"Verify the ETH wallet associated with your account. Syntax: '!verify <address>'")
+                      description=f"Verify the ETH wallet associated with your account. If verified successfully, it will be added to the database. Syntax: '!verify <address>'")
     async def verify_address(self, context, address: str):
         address = self.validate_address(address.rstrip())
         if address:
