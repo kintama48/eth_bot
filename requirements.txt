@@ -1,0 +1,4 @@
+web3==5.23.1
+py-cord
+psycopg2
+cryptoaddress==0.2.1

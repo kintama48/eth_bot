@@ -1,0 +1,13 @@
+{
+  "bot_prefix": "!",
+  "bot_token" : "OTI4MDEyMTQ3OTc0MzY1MjE0.YdSkqQ._pw5o_tb1OQDXvC1LJea3zPS_PM",
+  "admin_role_id": [],
+  "database":
+  {
+    "host": "ec2-34-230-133-163.compute-1.amazonaws.com",
+    "user": "bpksohjnqxghia",
+    "port": 5432,
+    "database": "d91ok380e2boea",
+    "password": "391cebb8cfc0080ac7f81493ebfa4e6b3b60e081da74b792ef0f9f1e0455a578"
+  }
+}
