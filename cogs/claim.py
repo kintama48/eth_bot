@@ -114,11 +114,18 @@ class Eth(commands.Cog, name="eth"):
         address = self.validate_address(address.rstrip())
         if address:
             if db.check_if_exists(context.author.id):
-                db.update_address(context.author.id, address)
-                embed = discord.Embed(color=randint(0, 0x000ff),
-                                      description="**ETH wallet verified and updated successfully in the database!**")
-                embed.timestamp = datetime.datetime.now()
-                await context.reply(embed=embed)
+                prev_address = db.get_address(context.author.id)
+                if address != prev_address:
+                    db.update_address(context.author.id, address)
+                    embed = discord.Embed(color=randint(0, 0x000ff),
+                                          description=f"**{context.author.mention} successfully updated their ETH wallet from `{prev_address}` to `{address}`!**")
+                    embed.timestamp = datetime.datetime.now()
+                    await context.reply(embed=embed)
+                else:
+                    embed = discord.Embed(color=0x000ff,
+                                          description=f"**Wallet already exists in database!**")
+                    embed.timestamp = datetime.datetime.now()
+                    await context.reply(embed=embed)
             else:
                 embed = discord.Embed(color=0x000ff,
                                       description=f"**{context.author.mention} You have not set your ETH wallet."
