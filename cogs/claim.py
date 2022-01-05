@@ -75,7 +75,7 @@ class Eth(commands.Cog, name="eth"):
             if not db.check_if_exists(context.author.id):
                 db.add_address(context.author.id, address)
                 embed = discord.Embed(color=randint(0, 0x000ff),
-                                      description="**ETH wallet added successfully in the database!**")
+                                      description="**ETH wallet added verified and successfully in the database!**")
                 embed.timestamp = datetime.datetime.now()
                 await context.reply(embed=embed)
             else:
@@ -116,7 +116,7 @@ class Eth(commands.Cog, name="eth"):
             if db.check_if_exists(context.author.id):
                 db.update_address(context.author.id, address)
                 embed = discord.Embed(color=randint(0, 0x000ff),
-                                      description="**ETH wallet updated successfully in the database!**")
+                                      description="**ETH wallet verified and updated successfully in the database!**")
                 embed.timestamp = datetime.datetime.now()
                 await context.reply(embed=embed)
             else:
