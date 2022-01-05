@@ -59,11 +59,12 @@ class Eth(commands.Cog, name="eth"):
                                   description=f"**The ETH wallet of {member.mention} is** `{address}`")
 
             embed.set_thumbnail(url=member.avatar_url)
-            embed.set_footer(text=str(datetime.datetime.now()))
+            embed.timestamp = datetime.datetime.now()
             await context.reply(embed=embed)
         else:
             embed = discord.Embed(color=0x000ff,
                                   description=f"**{member.mention} hasn't set their ETH wallet yet!**")
+            embed.timestamp = datetime.datetime.now()
             await context.reply(embed=embed)
 
     @commands.command(name="verify",
@@ -75,20 +76,20 @@ class Eth(commands.Cog, name="eth"):
                 db.add_address(context.author.id, address)
                 embed = discord.Embed(color=randint(0, 0x000ff),
                                       description="**ETH wallet added successfully in the database!**")
-                embed.set_footer(text=str(datetime.datetime.now()))
+                embed.timestamp = datetime.datetime.now()
                 await context.reply(embed=embed)
             else:
                 embed = discord.Embed(color=0x000ff,
                                       description=f"**{context.author.mention} You have already set your ETH wallet."
                                                   f" If you wish to update your address,"
                                                   f" please use the `!update <address>` command.**")
-                embed.set_footer(text=str(datetime.datetime.now()))
+                embed.timestamp = datetime.datetime.now()
                 await context.reply(embed=embed)
         else:
             embed = discord.Embed(color=0x000ff,
                                   description=f"**{context.author.mention} Your ETH wallet was not verified."
                                               f" Please try again.**")
-            embed.set_footer(text=str(datetime.datetime.now()))
+            embed.timestamp = datetime.datetime.now()
             await context.reply(embed=embed)
 
     @commands.command(name="remove",
@@ -98,13 +99,13 @@ class Eth(commands.Cog, name="eth"):
             db.remove_address(context.author.id)
             embed = discord.Embed(color=randint(0, 0x000ff),
                                   description="**ETH wallet associated with your account was removed successfully!**")
-            embed.set_footer(text=str(datetime.datetime.now()))
+            embed.timestamp = datetime.datetime.now()
             await context.reply(embed=embed)
         else:
             embed = discord.Embed(color=0x000ff,
                                   description=f"**{context.author.mention} Your wallet doesn't exist in the database"
                                               f" or it has already been removed!**")
-            embed.set_footer(text=str(datetime.datetime.now()))
+            embed.timestamp = datetime.datetime.now()
             await context.reply(embed=embed)
 
     @commands.command(name="update",
@@ -116,20 +117,20 @@ class Eth(commands.Cog, name="eth"):
                 db.update_address(context.author.id, address)
                 embed = discord.Embed(color=randint(0, 0x000ff),
                                       description="**ETH wallet updated successfully in the database!**")
-                embed.set_footer(text=str(datetime.datetime.now()))
+                embed.timestamp = datetime.datetime.now()
                 await context.reply(embed=embed)
             else:
                 embed = discord.Embed(color=0x000ff,
                                       description=f"**{context.author.mention} You have not set your ETH wallet."
                                                   f" If you wish to add your wallet,"
                                                   f" please use the `!set <address>` command.**")
-                embed.set_footer(text=str(datetime.datetime.now()))
+               embed.timestamp = datetime.datetime.now()
                 await context.reply(embed=embed)
         else:
             embed = discord.Embed(color=0x000ff,
                                   description=f"**{context.author.mention} You did not provide a valid ETH wallet."
                                               f" Please try again.**")
-            embed.set_footer(text=str(datetime.datetime.now()))
+            embed.timestamp = datetime.datetime.now()
             await context.reply(embed=embed)
 
     @commands.Cog.listener()
