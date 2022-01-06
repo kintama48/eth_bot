@@ -15,8 +15,6 @@ app.use(function (req, res, next) {
 
 app.post('/connect', (req, res) => {
   const {discordID, address}= req.body
-  //if (address === undefined) res.status(404)
-  console.log(discordID, address)
   userModel.connectDiscordID(discordID, address)
   .then(response => {
     res.status(200).send(response);
@@ -27,7 +25,7 @@ app.post('/connect', (req, res) => {
 })
 
 app.get('/', (req, res) => {
-  res.send('Hello world');
+  res.send('eth_bot API!');
 })
 
 app.listen(port, () => {
