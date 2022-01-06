@@ -1,4 +1,4 @@
-const api = require('api.js')
+const api = require('./api.js')
 const express = require('express')
 const app = express()
 const port = 3001
