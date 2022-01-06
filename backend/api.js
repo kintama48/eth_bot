@@ -1,5 +1,3 @@
-const { ETHERSCAN_API_KEY, ETHERSCAN_API_URL, FAUCET_ADDRESS, GOERLI_API_URL } = process.env;
-const request = rateLimit(axios.create(), {maxRequests: 5, perMillisecondss: 500})
 const maxTries = 3;
 
 const getBlockNumber = async function(time) {
