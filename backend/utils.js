@@ -1,10 +1,3 @@
-// require('dotenv').config();
-
-// const fs = require('fs');
-// const Web3 = require('web3');
-// const web3 = new Web3(new Web3.providers.HttpProvider(process.env.INFURA_HTTPS_ENDPOINT));
-// const Discord = require('discord.js');
-
 // Eth
 exports.getAddressTransactionCount = async (address) => {
   const nonce = await web3.eth.getTransactionCount(address);
