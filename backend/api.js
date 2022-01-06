@@ -1,4 +1,4 @@
-const axios = require('axios');
+// const axios = require('axios');
 // const rateLimit = require('axios-rate-limit');
 // require('dotenv').config({path: '../.env'})
 // const { ETHERSCAN_API_KEY, ETHERSCAN_API_URL, FAUCET_ADDRESS, GOERLI_API_URL } = process.env;
