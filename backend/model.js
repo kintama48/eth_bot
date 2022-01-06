@@ -1,5 +1,39 @@
 const { Pool, Client } = require('pg');
 const utils = require('./utils.js');
+const express = require('express')
+const app = express()
+const port = 3001
+
+const userModel = require('./model')
+
+app.use(express.json())
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
+  next();
+});
+
+app.post('/connect', (req, res) => {
+  const {discordID, address}= req.body
+  userModel.connectDiscordID(discordID, address)
+  .then(response => {
+    res.status(200).send(response);
+  })
+  .catch(error => {
+    res.status(500).send(error);
+  })
+})
+
+app.get('/', (req, res) => {
+  res.send('eth_bot API!');
+})
+
+app.listen(port, () => {
+  console.log(`App running on port ${port}.`)
+})
+[04:45, 1/7/2022] Tom: const { Pool } = require('pg');
+
 const connectionString = 'postgres://hamzaasaad:@localhost:5432/hamzaasaad'
 
 let pool = new Pool({
@@ -22,36 +56,37 @@ pool.connect();
 
 pool.query('SELECT NOW()', (err, res) => {
     if(err){
-        console.log('Database connection failed', err);
+        console.log('Database connection failed',err);
     }
     else {
         console.log('Database connected!');
     }
 });
 
-async function checkAddressExists(discordID){
+async function checkAddressExists(address){
     const select = `
-        SELECT * FROM public.users where discord_id=$1
+        SELECT * FROM "user" where address= $1
     `;
-    const vals=[discordID]
+    const vals=[address]
     const result = await pool.query(select,vals);
-    console.log("this res",result)
     return result.rows;
 
 }
  
 module.exports ={
-    connectDiscordID: async function(discordID, address){
-        const isAccountConnected = await checkAddressExists(discordID)
+    connectDiscordID: async function (discordID, address){
+        const isAccountConnected = await checkAddressExists(address)
         console.log(isAccountConnected)
         if (!isAccountConnected.length){
-            const insert = `INSERT INTO public.users (discord_id, address) VALUES ($1,$2);`
+            const insert = `INSERT INTO "user" (discord_id, address) VALUES ($1,$2);`
             const values = [discordID,address]
             
             const result = await pool.query(insert, values)
             console.log(result)
             return true
-        } 
-        return false
+        } else {
+            console.log(isAccountConnected[0].discord_id)
+            return isAccountConnected[0].discord_id
+        }
     }
 }
