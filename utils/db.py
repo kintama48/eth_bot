@@ -17,7 +17,7 @@ class Database:
         self.collection = db['users']
 
     def get_address(self, discord_id):
-        return self.collection.find_one({"discordID": discord_id})["address"]
+        return self.collection.find_one({"discordID": str(discord_id)})["address"]
 
     def check_if_exists(self, discord_id):
         return self.collection.find_one({'discordID': str(discord_id)})
