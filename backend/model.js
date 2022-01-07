@@ -2,7 +2,7 @@ const { Pool } = require('pg');
 const utils = require('./utils.js');
 const express = require('express')
 const app = express()
-const port = 3001
+// const port = 3001
 
 const userModel = require('./model')
 
@@ -29,9 +29,9 @@ app.get('/', (req, res) => {
   res.send('eth_bot API!');
 })
 
-app.listen(port, () => {
-  console.log(`App running on port ${port}.`)
-})
+// app.listen(port, () => {
+//   console.log(`App running on port ${port}.`)
+// })
 
 let pool = new Pool({
   user: "bpksohjnqxghia",
