@@ -2,7 +2,7 @@ const { Pool } = require('pg');
 const utils = require('./utils.js');
 const express = require('express')
 const app = express()
-const port = 3001
+// const port = 3001
 
 const userModel = require('./model')
 
