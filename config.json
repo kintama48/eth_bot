@@ -1,0 +1,7 @@
+{
+  "bot_prefix": "!",
+  "bot_token" : "OTI4MDEyMTQ3OTc0MzY1MjE0.YdSkqQ._pw5o_tb1OQDXvC1LJea3zPS_PM",
+  "admin_role_id": [],
+  "url": "https://eth-bot.netlify.app/",
+  "database_url": "mongodb+srv://eth_bot:eth_pass@cluster0.rertq.mongodb.net/eth_records?retryWrites=true&w=majority"
+}
