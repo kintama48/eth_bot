@@ -1,4 +1,4 @@
-const { Pool, Client } = require('pg');
+const { Pool } = require('pg');
 const utils = require('./utils.js');
 const express = require('express')
 const app = express()
@@ -32,7 +32,6 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
-[04:45, 1/7/2022] Tom: const { Pool } = require('pg');
 
 const connectionString = 'postgres://hamzaasaad:@localhost:5432/hamzaasaad'
 
