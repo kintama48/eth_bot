@@ -68,77 +68,79 @@ class Eth(commands.Cog, name="eth"):
             await context.reply(embed=embed)
 
     @commands.command(name="verify",
-                      description=f"Verify the ETH wallet associated with your account. If verified successfully, it will be added to the database. Syntax: '!verify <address>'")
-    async def verify_address(self, context, address: str):
-        address = self.validate_address(address.rstrip())
-        if address:
-            if not db.check_if_exists(context.author.id):
-                db.add_address(context.author.id, address)
-                embed = discord.Embed(color=randint(0, 0x000ff),
-                                      description="**ETH wallet verified and successfully added to the database!**")
-                embed.timestamp = datetime.datetime.now()
-                await context.reply(embed=embed)
-            else:
-                embed = discord.Embed(color=0x000ff,
-                                      description=f"**{context.author.mention} You have already set your ETH wallet."
-                                                  f" If you wish to update your address,"
-                                                  f" please use the `!update <address>` command.**")
-                embed.timestamp = datetime.datetime.now()
-                await context.reply(embed=embed)
-        else:
-            embed = discord.Embed(color=0x000ff,
-                                  description=f"**{context.author.mention} Your ETH wallet was not verified."
-                                              f" Please try again.**")
-            embed.timestamp = datetime.datetime.now()
-            await context.reply(embed=embed)
-
-    @commands.command(name="remove",
-                      description=f"Remove the ETH wallet associated with your account. Syntax: '!remove'")
-    async def remove_address(self, context):
+                      description=f"Verify the ETH wallet associated with your account. If verified successfully, it will be added to the database. Syntax: '!verify'")
+    async def verify_address(self, context):
         if db.check_if_exists(context.author.id):
-            db.remove_address(context.author.id)
             embed = discord.Embed(color=randint(0, 0x000ff),
-                                  description="**ETH wallet associated with your account was removed successfully!**")
+                                  description=f"**Please follow this link to verify via Metamask:\n**{config['url']}{context.author.id}")
             embed.timestamp = datetime.datetime.now()
-            await context.reply(embed=embed)
+            await context.author.send(embed=embed)
         else:
             embed = discord.Embed(color=0x000ff,
-                                  description=f"**{context.author.mention} Your wallet doesn't exist in the database"
-                                              f" or it has already been removed!**")
+                                  description=f"**{context.author.mention} has already connected their MetaMask account. Please contact Admin if this is a mistake.**")
             embed.timestamp = datetime.datetime.now()
             await context.reply(embed=embed)
+        # if not db.check_if_exists(context.author.id):
+        #     db.add_address(context.author.id, address)
+        #     embed = discord.Embed(color=randint(0, 0x000ff),
+        #                           description="**ETH wallet verified and successfully added to the database!**")
+        #     embed.timestamp = datetime.datetime.now()
+        #     await context.reply(embed=embed)
+        # else:
+        #     embed = discord.Embed(color=0x000ff,
+        #                           description=f"**{context.author.mention} You have already set your ETH wallet."
+        #                                       f" If you wish to update your address,"
+        #                                       f" please use the `!update <address>` command.**")
+        #     embed.timestamp = datetime.datetime.now()
+        #     await context.reply(embed=embed)
 
-    @commands.command(name="update",
-                      description=f"Update the ETH wallet associated with your account. Syntax: '!update <address>'")
-    async def update_address(self, context, address: str):
-        address = self.validate_address(address.rstrip())
-        if address:
-            if db.check_if_exists(context.author.id):
-                prev_address = db.get_address(context.author.id)
-                if address != prev_address:
-                    db.update_address(context.author.id, address)
-                    embed = discord.Embed(color=randint(0, 0x000ff),
-                                          description=f"**{context.author.mention} successfully updated their ETH wallet from `{prev_address}` to `{address}`!**")
-                    embed.timestamp = datetime.datetime.now()
-                    await context.reply(embed=embed)
-                else:
-                    embed = discord.Embed(color=0x000ff,
-                                          description=f"**Wallet already exists in database!**")
-                    embed.timestamp = datetime.datetime.now()
-                    await context.reply(embed=embed)
-            else:
-                embed = discord.Embed(color=0x000ff,
-                                      description=f"**{context.author.mention} You have not set your ETH wallet."
-                                                  f" If you wish to add your wallet,"
-                                                  f" please use the `!set <address>` command.**")
-                embed.timestamp = datetime.datetime.now()
-                await context.reply(embed=embed)
-        else:
-            embed = discord.Embed(color=0x000ff,
-                                  description=f"**{context.author.mention} You did not provide a valid ETH wallet."
-                                              f" Please try again.**")
-            embed.timestamp = datetime.datetime.now()
-            await context.reply(embed=embed)
+    # @commands.command(name="remove",
+    #                   description=f"Remove the ETH wallet associated with your account. Syntax: '!remove'")
+    # async def remove_address(self, context):
+    #     if db.check_if_exists(context.author.id):
+    #         db.remove_address(context.author.id)
+    #         embed = discord.Embed(color=randint(0, 0x000ff),
+    #                               description="**ETH wallet associated with your account was removed successfully!**")
+    #         embed.timestamp = datetime.datetime.now()
+    #         await context.reply(embed=embed)
+    #     else:
+    #         embed = discord.Embed(color=0x000ff,
+    #                               description=f"**{context.author.mention} Your wallet doesn't exist in the database"
+    #                                           f" or it has already been removed!**")
+    #         embed.timestamp = datetime.datetime.now()
+    #         await context.reply(embed=embed)
+    #
+    # @commands.command(name="update",
+    #                   description=f"Update the ETH wallet associated with your account. Syntax: '!update <address>'")
+    # async def update_address(self, context, address: str):
+    #     address = self.validate_address(address.rstrip())
+    #     if address:
+    #         if db.check_if_exists(context.author.id):
+    #             prev_address = db.get_address(context.author.id)
+    #             if address != prev_address:
+    #                 db.update_address(context.author.id, address)
+    #                 embed = discord.Embed(color=randint(0, 0x000ff),
+    #                                       description=f"**{context.author.mention} successfully updated their ETH wallet from `{prev_address}` to `{address}`!**")
+    #                 embed.timestamp = datetime.datetime.now()
+    #                 await context.reply(embed=embed)
+    #             else:
+    #                 embed = discord.Embed(color=0x000ff,
+    #                                       description=f"**Wallet already exists in database!**")
+    #                 embed.timestamp = datetime.datetime.now()
+    #                 await context.reply(embed=embed)
+    #         else:
+    #             embed = discord.Embed(color=0x000ff,
+    #                                   description=f"**{context.author.mention} You have not set your ETH wallet."
+    #                                               f" If you wish to add your wallet,"
+    #                                               f" please use the `!set <address>` command.**")
+    #             embed.timestamp = datetime.datetime.now()
+    #             await context.reply(embed=embed)
+    #     else:
+    #         embed = discord.Embed(color=0x000ff,
+    #                               description=f"**{context.author.mention} You did not provide a valid ETH wallet."
+    #                                           f" Please try again.**")
+    #         embed.timestamp = datetime.datetime.now()
+    #         await context.reply(embed=embed)
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx: commands.Context, error):
