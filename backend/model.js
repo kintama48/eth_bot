@@ -34,10 +34,10 @@ app.get('/', (req, res) => {
 // })
 
 let pool = new Pool({
-  user: "bpksohjnqxghia",
-  host: "ec2-34-230-133-163.compute-1.amazonaws.com",
-  database: "d91ok380e2boea",
-  password: "391cebb8cfc0080ac7f81493ebfa4e6b3b60e081da74b792ef0f9f1e0455a578",
+  user: "ekmowbdkcnncmr",
+  host: "ec2-3-219-131-161.compute-1.amazonaws.com",
+  database: "d7qjcjq0ruqbef",
+  password: "a1b64a204c91cd8b7bb03ef2461797545bdaf7deea08b75f148c2f23391bdb2d",
   port: 5432
 })
 
