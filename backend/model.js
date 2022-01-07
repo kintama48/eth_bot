@@ -33,8 +33,6 @@ app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
 
-const connectionString = 'postgres://hamzaasaad:@localhost:5432/hamzaasaad'
-
 let pool = new Pool({
   user: "bpksohjnqxghia",
   host: "ec2-34-230-133-163.compute-1.amazonaws.com",
