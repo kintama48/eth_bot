@@ -28,6 +28,6 @@ app.get('/', (req, res) => {
   res.send('eth_bot API!');
 })
 
-app.listen(port, () => {
-  console.log(`App running on port ${port}.`)
-})
+// app.listen(port, () => {
+//   console.log(`App running on port ${port}.`)
+// })
