@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3001
+const PORT = 5000;
 var Mongoose = require('mongoose')
 require('./db/index')
 require('./db/model/user')
@@ -49,6 +49,6 @@ app.get('/', (req, res) => {
   res.send('eth_bot API!');
 })
 
-app.listen(port, () => {
-  console.log(`App running on port ${port}.`)
+app.listen(PORT, () => {
+  console.log(`App running on port ${PORT}.`)
 })
