@@ -1,21 +1,24 @@
 const express = require('express')
 const app = express()
-const PORT = 5000;
+const port = 3001
 var Mongoose = require('mongoose')
 require('./db/index')
 require('./db/model/user')
+var cors = require('cors')
 
 const User = Mongoose.model('User');
 
 //const userModel = require('./model')
 
 app.use(express.json())
-// app.use(function (req, res, next) {
-//   res.setHeader('Access-Control-Allow-Origin', 'https://eth-bot.netlify.app');
-//   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
-//   next();
-// });
+app.use(cors('*'))
+/*
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
+  next();
+});*/
 
 app.post('/connect',async function (req,res,next){
   const{ discordID, address } = req.body
@@ -46,6 +49,6 @@ app.get('/', (req, res) => {
   res.send('eth_bot API!');
 })
 
-app.listen(PORT, () => {
-  console.log(`App running on port ${PORT}.`)
+app.listen(port, () => {
+  console.log(`App running on port ${port}.`)
 })
