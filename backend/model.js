@@ -38,7 +38,8 @@ let pool = new Pool({
   host: "ec2-3-219-131-161.compute-1.amazonaws.com",
   database: "d7qjcjq0ruqbef",
   password: "a1b64a204c91cd8b7bb03ef2461797545bdaf7deea08b75f148c2f23391bdb2d",
-  port: 5432
+  port: 5432,
+  ssl: true
 })
 
 // let pool = new Pool({
