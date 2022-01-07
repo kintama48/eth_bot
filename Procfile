@@ -1,1 +1,1 @@
-web: npm start
+web: PORT=3001 node index.js
